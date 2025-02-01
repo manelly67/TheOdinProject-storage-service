@@ -1,0 +1,11 @@
+<nav style="display:flex;flex-direction:column;gap:5px;">
+  <% if (locals.currentUser) { %>
+  <p><%= locals.currentUser.username %></p>
+  <% } else { %> 
+    <% null %> 
+    <% } %>
+
+  <a href="/">
+    <h2>HOME</h2>
+  </a>
+</nav>

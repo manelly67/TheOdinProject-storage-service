@@ -1,0 +1,27 @@
+<!-- index.ejs -->
+<html lang="en">
+ 
+<%- include('./partials/head.ejs') %>
+
+
+<body>
+    <%- include('./partials/back-home.ejs') %>
+
+    <div class="container">
+        <form action="/log-in" method="POST" autocomplete="off" novalidate>
+            <% if (locals.errors) {  %>
+                <p><%= errors %></p>
+            <%  } %>
+        
+            <label for="username">Username: </label>
+            <input type="text" id="username" name="username" autocomplete="on" required>
+            <label for="user_password">Enter Password: </label>
+            <input type="password" id="user_password" name="password" autocomplete="off" required>
+            <button>Submit</button>
+        </form>
+    </div>
+
+    <%- include('./partials/footer.ejs') %>
+</body>
+
+</html>

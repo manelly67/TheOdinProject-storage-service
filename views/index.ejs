@@ -5,9 +5,30 @@
 
 
 <body>
+    <%- include('./partials/back-home.ejs') %>
     
     <div class="container">
-        <h2>NUEVO PROJECTO</h2>
+        <div style="display:flex; flex-direction:row; gap:25px;">
+          
+          <% if (locals.currentUser) { %>
+
+            <a href="/log-out">
+                <h2>LOGOUT</h2>
+            </a>
+
+            <% } else { %>
+
+            <a href="/log-in">
+                <h2>LOGIN</h2>
+            </a>
+
+                <% } %>
+
+            <a href="/sign-up">
+                <h2>SIGN UP</h2>
+            </a> 
+
+        </div>
     </div>
 
     <%- include('./partials/footer.ejs') %>

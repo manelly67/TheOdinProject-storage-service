@@ -1,0 +1,24 @@
+<!-- index.ejs -->
+<html lang="en">
+ 
+<%- include('./partials/head.ejs') %>
+
+
+<body>
+    <%- include('./partials/back-home.ejs') %>
+    
+    <div class="container">
+        <div style="display:flex; flex-direction:column;gap: 2px;">
+            <h1>Hello <span style="color:blue;"><%= user.username %></span></h1>
+            <p><%= text %></p>
+            <p>Please log out...</p>
+            <hr>
+            <a href="/log-out" style="width: 100px;">LOG OUT</a>
+        </div>
+        
+    </div>
+
+    <%- include('./partials/footer.ejs') %>
+</body>
+
+</html>
