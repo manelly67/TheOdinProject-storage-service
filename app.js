@@ -5,7 +5,7 @@ const host = process.env.HOST || '0.0.0.0';
 const appRoutes = require('./routes/appRoutes');
 const express = require('express');
 /* const session = require('express-session'); */
-const expressSession = require('express-session');
+const session = require('express-session');
 const { PrismaSessionStore } = require('@quixo3/prisma-session-store');
 const { PrismaClient } = require('@prisma/client');
 
@@ -17,7 +17,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(
-    expressSession({
+    session({
       cookie: {
         maxAge: 1000 * 60 * 60 * 24, // Equals 1 day - 24hrs/1day - 60min/1hrs - 60seg/1min - 1000ms/1seg
       },
@@ -36,8 +36,8 @@ app.use(
   );
 
 // se debe inicializar cada sesion
-/* app.use(passport.initialize());
-app.use(passport.session()); */
+app.use(passport.initialize());
+app.use(passport.session());
 
 // middleware and to serve static assets
 app.use(express.static('public'));
