@@ -4,10 +4,14 @@ const host = process.env.HOST || '0.0.0.0';
 
 const appRoutes = require('./routes/appRoutes');
 const express = require('express');
-/* const session = require('express-session'); */
 const session = require('express-session');
+
+/* const fileUpload = require('express-fileupload');
+app.use(fileUpload()); */
+
 const { PrismaSessionStore } = require('@quixo3/prisma-session-store');
 const { PrismaClient } = require('@prisma/client');
+
 
 const passport = require('passport');
 
@@ -15,6 +19,7 @@ const app = express();
 // to define the view engine and path
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
 
 app.use(
     session({

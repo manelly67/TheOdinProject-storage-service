@@ -13,14 +13,32 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Uploads {
+model Files {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   title     String   @db.VarChar(255)
-  fileURL   String?
-  owner    User     @relation(fields: [ownerId], references: [id])
+  size      Int
+  filename  String
+  fileURL   String
   ownerId  Int
+  foldersId  Int?
+}
+
+model Folders {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name     String   @db.VarChar(50)
+  ownerId  Int
+  parentFolder Int?
+}
+
+model Uploads {
+  id       Int     @id @default(autoincrement())
+  owner    User    @relation(fields: [ownerId], references: [id])
+  ownerId  Int
+  content  Json?
 }
 
 model User {

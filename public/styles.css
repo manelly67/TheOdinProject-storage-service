@@ -61,13 +61,39 @@ body {
 
 }
 
+.uploadNav {
+   width: 200px;
+   height: 100px;
+   margin-left: 10px;
+   display: flex;
+   flex-direction: column;
+   gap:15px;
+}
+
+button {
+    font-size: 1rem;
+}
+
+button:hover {
+    background-color: mediumpurple;
+}
+
+.containerHome {
+    height: calc(100vh*0.7);
+    width: 100vw;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    }
 
 .container {
     height: calc(100vh*0.7);
     width: 100vw;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content:flex-start;
+    margin-left: 20px;
+    margin-top: 30px;
+    align-items: self-start;
     }
 
 .container > form {
@@ -93,9 +119,84 @@ input:valid, input:focus{
     background-color: transparent;
 }
 
+.formUpload{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+    align-items: center;
+}
+
+caption{
+    margin-left: 0px;
+}
+
+@media (max-width: 421px) {
+   
+    table{
+        width: 330px;
+    }
+}
+
+
+td, th {  
+    border: 1px solid black;
+    height: 20px;
+    padding: 6px;
+    text-wrap: wrap;
+  }
+
+td {
+    text-align: right;
+}
+
+th {
+    text-align: center;
+}
+
+thead {
+    background-color: lightgray;
+    text-transform: uppercase;
+}
+
+tbody {
+    font-size: 95%;
+    font-style: italic;
+  }
+
 footer {
     margin-top: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+/* .gridContainer {
+    display: grid;
+    grid-template-rows: repeat(auto-fit, minmax(150px, 1fr));
+} */
+
+/* style dropdown-menu */
+
+/* .container-dropdown{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap:10px;
+    
+  }
+
+.container-dropdown button {
+    height: 20px;
+}
+
+.dropdown-menu{
+    display: flex;
+  }
+.dropdown-toggle{
+    width: 100px;
+}
+
+.visible{
+    display: flex;
+  } */

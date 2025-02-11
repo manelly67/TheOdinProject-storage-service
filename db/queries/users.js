@@ -14,6 +14,33 @@ async function createUser(req, res, hashedPassword) {
       },
     })
     .then(async () => {
+      const userCreated = await getUserFromUsername(req.body.username);
+      const userId = userCreated.id;
+      // create the main folder My Storage for the new user
+      await prisma.folders.create({
+        data: {
+          name: 'My Storage',
+          ownerId: userId,
+          parentFolder: null,
+        },
+      });
+      const mainFolderId = await findMainFolderId(userId);
+      const contentObject = {
+        my_storage : {
+          id : mainFolderId,
+          content : {
+            arrayFolders : [],
+            arrayFiles : [],
+          },
+        }
+      };
+      // create the upload object with My Storage folder
+      await prisma.uploads.create({
+        data: {
+          ownerId: userId,
+          content: contentObject,
+        },
+      });
       await prisma.$disconnect();
       res.redirect("/");
     })
@@ -55,6 +82,24 @@ const getUserFromId = async(id) => {
       uploads: true,
     },
   });
+};
+
+const findMainFolderId = async(arg) => {
+  const [row ] = await prisma.folders
+    .findMany({
+      where: {
+        AND: {
+          ownerId: {
+            equals: Number(arg),
+          },
+          name: {
+            equals: 'My Storage',
+          },
+        },
+      },
+    });
+  return row.id;
+
 };
 
 module.exports = {
