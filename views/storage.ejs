@@ -1,0 +1,72 @@
+<html lang="en">
+ 
+<%- include('./partials/head.ejs') %>
+
+
+<body>
+
+
+    <%- include('./partials/back-home.ejs') %>
+    <hr>
+    <%- include('./partials/nav-upload.ejs') %>
+
+    <div class="container">
+        <div style="display:flex; flex-direction: column; gap:15px;">
+            <caption style="padding-bottom: 15px;">
+                MY STORAGE > 
+            </caption>
+            
+            <section class="tableContainer">
+                
+                <% if (rows.length === 0) {  %>
+                    <p> NO FILES IN THE STORAGE</p>
+                    <%  } else { %>
+                    <table>
+                    <thead>
+                       <tr>
+                        <th>file</th>
+                        <th>updated</th>
+                        <th>size</th>
+                        <th>folder</th>
+                        <th></th>
+                       
+                       </tr>
+                    </thead>  
+                    <tbody>
+                    <%  rows.forEach((file) => {  %>
+                        <tr>
+                        <td><%= file.title %></td>
+                        <td><%= formatDate(file.updatedAt) %></td>
+                        <td><%= formatFileSize(file.size) %></td>
+                        <td><%= file.folder %></td>
+                        <td><button onclick="{
+                            downloadFile('<%= file.id %>');
+                                }">DOWNLOAD</button></td>
+                      
+                        </tr>
+                    <% })   %>
+                    </tbody>
+                    </table>
+
+                            <%  } %>
+            </section>
+           
+
+        </div>
+        
+ 
+    </div>
+
+    <%- include('./partials/footer.ejs') %>
+
+<script>
+
+function downloadFile(arg){
+            window.location.href= `/download/${arg}` ; 
+        }
+
+</script>
+
+</body>
+
+</html>

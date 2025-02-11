@@ -4,8 +4,22 @@
   <% } else { %> 
     <% null %> 
     <% } %>
+ 
+  <div style="display:flex;flex-direction:row;gap:15px;" >
+    <a href="/">
+      <h2>HOME</h2>
+    </a>
+    <% if (locals.currentUser) { %>
+      <a href="/storage">
+        <h2>STORAGE</h2>
+      </a>
+      <a href="/log-out">
+        <h2>LOGOUT</h2>
+      </a>
+      <% } else { %> 
+        <% null %> 
+        <% } %>
 
-  <a href="/">
-    <h2>HOME</h2>
-  </a>
+  </div>
+  
 </nav>

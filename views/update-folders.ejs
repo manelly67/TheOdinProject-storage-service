@@ -1,0 +1,50 @@
+<html lang="en">
+ 
+<%- include('./partials/head.ejs') %>
+
+
+<body>
+    <%- include('./partials/back-home.ejs') %>
+    
+    <div class="containerHome">
+   
+        <div style="display:flex; flex-direction: column; gap:30px;">
+        <p> FOLDER:  <%= folderData.name.toUpperCase() %> </p>
+        
+        <form  class="formUpload" action="/update_folder/<%= idFolder %>" method="post"  >
+            <%- include('./partials/errors.ejs') %>   
+           <label for="update_folder">Change folder name:</label>
+           <input id="update_folder" name="my_folder" type="text" value="<%= folderData.name %>" style="width: 150px; padding-left: 5px;" >
+           <div style="display:flex; flex-direction: column; justify-content: flex-start ;gap:20px;">
+            <div>
+                <p>Folder located in: <%= parentFolder.name %></p>
+            </div>
+            <div>
+                <label for="folderMenu">Move to:</label>
+                <select id="folderMenu" name="parent_folder">
+                    <option value="<%= folderData.parentFolder %>"> Don't Move </option>
+                    <option value="<%= my_storage.id %>"> My Storage </option>
+                    <%  if (my_storage.content.arrayFolders!==0) { %>
+                      <%  my_storage.content.arrayFolders.forEach( (e)=>{  %>
+                        <option value="<%= e.id %>"> <%= e.name %> </option>
+                      <%  }) %>
+          
+                      <%  } else { %>
+                        <%  null %>
+                        <%  } %>
+          
+                </select>
+            </div>
+             
+           </div>
+           <button type="submit">UPDATE</button>
+           </form>
+       
+        
+            <a style="margin-top: 40px;" href="/storage/update_folder"> GO BACK</a>
+        </div>
+
+    
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<html lang="en">
+ 
+<%- include('./partials/head.ejs') %>
+
+
+<body>
+    <%- include('./partials/back-home.ejs') %>
+    <hr>
+    <%- include('./partials/nav-upload.ejs') %>
+    
+
+   <% if(my_storage.content.arrayFolders.length!==0){ %>
+        <ul style="margin-left: 40px; display: flex; flex-direction: column; gap:10px;">
+            <p>FOLDERS: </p>
+            <% my_storage.content.arrayFolders.forEach((e)=>{  %>
+                <li style="display:flex; flex-direction: row; gap:15px;">
+                    <p><%= e.name.toUpperCase() %></p>
+                    <button onclick="{
+                        updateFolder('<%= e.id %>');
+                            }" >UPDATE</button>
+                    
+                    <button  onclick="{
+                        deleteFolder('<%= e.id %>');
+                            }">DELETE</button>
+                    
+                </li>
+
+            <%  }) %>
+
+        </ul>
+
+   <% } else { %>
+   <p> THERE IS NO FOLDERS FOR DISPLAY</p>
+   <% } %>
+
+    <div class="container">
+        
+    </div> 
+
+    <%- include('./partials/footer.ejs') %>
+
+    <script>
+
+        function updateFolder(arg){
+            window.location.href= `/update_folder/${arg}` ; 
+        }
+
+        function deleteFolder(arg){
+            window.location.href= `/delete_folder/${arg}` ; 
+        }
+
+    </script>
+
+</body>
+
+</html>

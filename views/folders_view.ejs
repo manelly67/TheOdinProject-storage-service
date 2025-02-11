@@ -1,0 +1,44 @@
+<html lang="en">
+ 
+<%- include('./partials/head.ejs') %>
+
+
+<body>
+    <%- include('./partials/back-home.ejs') %>
+    <hr>
+    <%- include('./partials/nav-upload.ejs') %>
+    
+
+   
+   <form  class="formUpload" action="/storage/create_folder" method="post"  >
+     <%- include('./partials/errors.ejs') %>   
+    <label for="new_folder">Folder name:</label>
+    <input id="new_folder" name="my_folder" type="text" style="width: 150px;" >
+    <div>
+      <label for="folderMenu">Select Parent Folder:</label>
+      <select id="folderMenu" name="parent_folder">
+          <option value="<%= my_storage.id %>"> My Storage </option>
+          <%  if (my_storage.content.arrayFolders!==0) { %>
+            <%  my_storage.content.arrayFolders.forEach( (e)=>{  %>
+              <option value="<%= e.id %>"> <%= e.name %> </option>
+            <%  }) %>
+
+            <%  } else { %>
+              <%  null %>
+              <%  } %>
+
+      </select>
+    </div>
+    <button type="submit">Create</button>
+    </form>
+
+    <div class="container">
+        
+    </div> 
+
+    <%- include('./partials/footer.ejs') %>
+
+
+</body>
+
+</html>

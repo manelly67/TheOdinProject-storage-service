@@ -1,0 +1,25 @@
+<nav class="uploadNav">
+    <button id="upload_file">upload file</button>
+    <button id="create_folder">create new folder</button>
+    <button id="update_folder">update folder</button>
+</nav>
+<hr>
+
+
+<script>
+    const uploadFileButton = document.getElementById('upload_file');
+    uploadFileButton.addEventListener('click', (e) => {
+        window.location.href = '/storage/upload_file';
+      });
+
+    const createFolderButton = document.getElementById('create_folder');
+    createFolderButton.addEventListener('click', (e) => {
+        window.location.href = '/storage/create_folder';
+      });
+
+    const updateFolderButton = document.getElementById('update_folder');
+    updateFolderButton.addEventListener('click', (e) => {
+        window.location.href = '/storage/update_folder';
+      });
+
+</script>

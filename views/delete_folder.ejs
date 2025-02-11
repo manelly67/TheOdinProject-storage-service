@@ -1,0 +1,34 @@
+<html lang="en">
+ 
+<%- include('./partials/head.ejs') %>
+
+
+<body>
+    <%- include('./partials/back-home.ejs') %>
+    
+    <div class="containerHome">
+   
+        <div style="display:flex; flex-direction: column; gap:30px;">
+        <p> FOLDER:  <%= name.toUpperCase() %> </p>
+        
+                
+        <%  if(canBeDeleted===true){ %>
+            
+            <form action="/delete_folder/<%= idFolder %>" method="POST">
+                <button type="submit">CONFIRM DELETE</button>
+            </form>
+
+        <% } else { %>
+            
+            <p> This folder cannot be deleted because it contains items: </p>
+            
+        <% } %>
+        <div>
+
+            <a style="margin-top: 40px;" href="/storage/update_folder"> GO BACK</a>
+    </div>
+
+    
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<html lang="en">
+ 
+<%- include('./partials/head.ejs') %>
+
+
+<body>
+    <%- include('./partials/back-home.ejs') %>
+    <hr>
+    <%- include('./partials/nav-upload.ejs') %>
+    
+
+    <form id="uploadFile" class="formUpload" action="/storage/upload_file" method="post" enctype="multipart/form-data" >
+        
+        <label for="input_file">Select the file to upload:</label>
+        <input id="input_file" name="my_upload" type="file" style="width: 300px;" >
+        <div>
+            <label for="folderMenu">Save in Folder:</label>
+            <select id="folderMenu" name="folder">
+                <option value="<%= my_storage.id %>"> My Storage </option>
+
+                <%  if (my_storage.content.arrayFolders!==0) { %>
+                    <%  my_storage.content.arrayFolders.forEach( (e)=>{  %>
+                      <option value="<%= e.id %>"> <%= e.name %> </option>
+                    <%  }) %>
+        
+                    <%  } else { %>
+                      <%  null %>
+                      <%  } %>
+
+
+                <!-- AGREGAR LA LOGICA CUANDO HAY MAS DE UNA CARPETA-->
+
+            </select>
+        </div>
+        
+        <button type="submit">Upload Now</button>
+    </form>
+    <hr>
+    <p style="color:red;"><%= text %></p>
+        <% if (success===true) { %>
+        <p style="color:green;"> File uploaded successfully. </p>
+        <% } else { %>
+            <% null %>
+                <% } %>
+
+
+    <div class="container">
+        
+    </div> 
+
+    <%- include('./partials/footer.ejs') %>
+
+
+</body>
+
+</html>
